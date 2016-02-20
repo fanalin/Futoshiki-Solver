@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<game>._._._._______.(._._.v_^___^._._._._______._._._23_2_1_4_______2(3_4_1v_^___^1_4_2_3_______4_1_3_2</game>
+
+<!--
+x00 x10 x20 x30
+x01 x11 x21 x31
+x02 x12 x22 x32
+x03 x13 x23 x33
+
+
+x01 < x11
+x02 < x01 (x01 > x02)
+x11 < x12
+x31 < x32
+
+x44 = 2
+
+._._._.   7
+_______
+.(._._.
+v_^___^
+._._._.
+_______
+._._._2
+
+3_2_1_4_______2(3_4_1v_^___^1_4_2_3_______4_1_3_2
+
+
+
+7 Zeichen pro Reihe
+gerade Reihen sind die Ziffernreihen (ab 0 gezählt)
+pro Ziffenreihe: gerade Spalten sind die Ziffern
+-->
