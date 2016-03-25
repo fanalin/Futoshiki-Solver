@@ -20,7 +20,7 @@ import javax.annotation.Resource;
 public class FutoshikiSolverCliRunner implements CommandLineRunner {
 
     @Resource(name = "futoshikiFromFileReader")
-    FutoshikiRepository repo;
+    private FutoshikiRepository repo;
 
     private static final Logger log = LoggerFactory.getLogger(FutoshikiSolverCliRunner.class);
 
@@ -31,7 +31,7 @@ public class FutoshikiSolverCliRunner implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         log.info("Starting Futoshiki Solver");
-        FutoshikiGameProperties props = new FutoshikiGameProperties(1, 5);
+        FutoshikiGameProperties props = new FutoshikiGameProperties(1, 4);
         FutoshikiGame game = repo.get(props);
 
         /*FutoshikiGameSolver solver = new BruteForceSolver(

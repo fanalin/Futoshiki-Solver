@@ -8,22 +8,23 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by matti on 20.02.2016.
+ * A iterator over solutions candidates, where each solution candidate consists of valid rows (no duplicates in a row)
  */
 public class ValidRowIterator implements SolutionIterator {
     private final int size;
-    private GameSolution currentSolution;
     private final RowIteratorFactory rowIteratorFactory;
     private List<Iterator<List<Integer>>> rowIterators;
+
+    private GameSolution currentSolution;
 
     public ValidRowIterator(int size, List<Iterator<List<Integer>>> startingIterators, final RowIteratorFactory rowIteratorFactory) {
         this.size = size;
         this.rowIteratorFactory = rowIteratorFactory;
         this.rowIterators = startingIterators;
-        this.currentSolution = new GameSolution(size);
 
+        currentSolution = new GameSolution(size);
         for (int i = 0; i < size; ++i) {
-            fillInSolution(startingIterators.get(i).next(), i, currentSolution);
+            fillSolution(startingIterators.get(i).next(), i);
         }
     }
 
@@ -44,8 +45,7 @@ public class ValidRowIterator implements SolutionIterator {
 
             if (iter.hasNext()) {
                 List<Integer> row = iter.next();
-                fillInSolution(row, i, currentSolution);
-
+                fillSolution(row, i);
                 return currentSolution;
             }
 
@@ -56,11 +56,12 @@ public class ValidRowIterator implements SolutionIterator {
     }
 
 
-    private void fillInSolution(final List<Integer> row, int y, GameSolution solution) {
-        for (int x = 0, len = row.size(); x < len; ++x) {
+    private void fillSolution(List<Integer> row, int rowIndex) {
+        for (int x = 0; x < size; ++x) {
             int val = row.get(x);
-            solution.getField(new Coord(x, y)).setValue(val);
+            currentSolution.getField(new Coord(x, rowIndex)).setValue(val);
         }
+
     }
 
     public static List<Iterator<List<Integer>>> getIteratorList(RowIteratorFactory factory, int size) {
