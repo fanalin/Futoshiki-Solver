@@ -1,26 +1,25 @@
 package de.fanalin.futoshiki.solver;
 
-import de.fanalin.futoshiki.solver.bruteforcesolver.AllSolutionIterator;
-import de.fanalin.futoshiki.solver.bruteforcesolver.BruteForceSolver;
-import de.fanalin.futoshiki.solver.bruteforcesolver.RowPermutationIteratorFactory;
-import de.fanalin.futoshiki.solver.bruteforcesolver.ValidRowIterator;
+import de.fanalin.futoshiki.solver.Validator.SolutionValidator;
 import de.fanalin.futoshiki.solver.gamerepository.FutoshikiRepository;
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 import javax.annotation.Resource;
+
 
 @SpringBootApplication
 public class FutoshikiSolverCliRunner implements CommandLineRunner {
 
     @Resource(name = "futoshikiFromFileReader")
     private FutoshikiRepository repo;
+
+    @Autowired
+    private FutoshikiGameSolver solver;
 
     private static final Logger log = LoggerFactory.getLogger(FutoshikiSolverCliRunner.class);
 
@@ -31,7 +30,7 @@ public class FutoshikiSolverCliRunner implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         log.info("Starting Futoshiki Solver");
-        FutoshikiGameProperties props = new FutoshikiGameProperties(1, 4);
+        FutoshikiGameProperties props = new FutoshikiGameProperties(1, 5);
         FutoshikiGame game = repo.get(props);
 
         /*FutoshikiGameSolver solver = new BruteForceSolver(
@@ -42,6 +41,7 @@ public class FutoshikiSolverCliRunner implements CommandLineRunner {
             )
         );*/
 
+        /*
         RowPermutationIteratorFactory factory = new RowPermutationIteratorFactory(
             RowPermutationIteratorFactory.createValidNumbersList(props.getSize())
         );
@@ -51,14 +51,12 @@ public class FutoshikiSolverCliRunner implements CommandLineRunner {
                 ValidRowIterator.getIteratorList(factory, props.getSize()),
                 factory
             )
-        );
+        );*/
 
-        solver.solve(game);
-    }
+        GameSolution solution = solver.solve(game);
+        solution.print();
 
-
-    @Bean
-    public HttpClient getHttpClient() {
-        return HttpClients.createDefault();
+        SolutionValidator validator = new SolutionValidator(game);
+        log.info("checking if solution is valid: " + validator.isValid(solution));
     }
 }

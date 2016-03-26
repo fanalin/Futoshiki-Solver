@@ -1,7 +1,7 @@
 package de.fanalin.futoshiki.solver;
 
 /**
- * Created by matti on 13.02.2016.
+ * A GameSolution describes a (not necessarily valid) solution of a Futoshiki game
  */
 public class GameSolution {
 
@@ -40,7 +40,6 @@ public class GameSolution {
             System.out.println("");
         }
     }
-
 
     private void initValueField() {
         values = new Field[size][];
