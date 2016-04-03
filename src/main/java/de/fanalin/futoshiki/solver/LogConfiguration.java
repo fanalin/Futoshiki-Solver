@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by matti on 03.04.2016.
+ * Configure Herald's Logger
  */
 @Configuration
 public class LogConfiguration {

@@ -8,14 +8,15 @@ import de.fanalin.futoshiki.solver.Validator.SolutionValidator;
  */
 public class BruteForceSolver implements FutoshikiGameSolver {
 
-    private final SolutionIterator solutionIterator;
+    private SolutionIteratorFactory solutionIteratorFactory;
 
-    public BruteForceSolver(SolutionIterator solutionIterator) {
-        this.solutionIterator = solutionIterator;
+    public BruteForceSolver(SolutionIteratorFactory solutionIteratorFactory) {
+        this.solutionIteratorFactory = solutionIteratorFactory;
     }
 
     @Override
     public GameSolution solve(final FutoshikiGame game) {
+        SolutionIterator solutionIterator = solutionIteratorFactory.get(game.getProps());
         SolutionValidator validator = new SolutionValidator(game);
         int count = 1;
 

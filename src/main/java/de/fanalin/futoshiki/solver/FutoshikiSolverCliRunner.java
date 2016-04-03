@@ -37,7 +37,7 @@ public class FutoshikiSolverCliRunner implements CommandLineRunner {
         }
 
         FutoshikiGameSolverFactory solverFactory = cliArgumentParser.getSolverFromCliArguments(strings);
-        FutoshikiGameSolver solver = solverFactory.get(props);
+        FutoshikiGameSolver solver = solverFactory.get();
 
         GameSolution solution = solver.solve(game);
         solution.print();

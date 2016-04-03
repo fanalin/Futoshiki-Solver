@@ -1,7 +1,6 @@
 package de.fanalin.futoshiki.solver;
 
-import de.fanalin.futoshiki.solver.bruteforcesolver.AllSolutionIteratorSolverFactory;
-import de.fanalin.futoshiki.solver.bruteforcesolver.ValidRowIteratorSolverFactory;
+import de.fanalin.futoshiki.solver.bruteforcesolver.*;
 import de.fanalin.futoshiki.solver.gamerepository.FutoshikiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +14,12 @@ import javax.annotation.Resource;
 class CliArgumentParser {
     @Autowired
     private FutoshikiGameSolver lpSolver;
+
+    @Autowired
+    private AllSolutionIteratorFactory allSolutionIteratorFactory;
+
+    @Autowired
+    private ValidRowIteratorFactory validRowIteratorFactory;
 
     @Resource(name = "futoshikiFromFileReader")
     private FutoshikiRepository directoryRepository;
@@ -31,21 +36,31 @@ class CliArgumentParser {
     }
 
     public FutoshikiGameSolverFactory getSolverFromCliArguments(String... strings) {
-        return getValidRowIteratorSolverFactory();
+        return getAllSolutionBruteForceSolverFactory();
     }
 
     private FutoshikiGameSolverFactory getAllSolutionBruteForceSolverFactory() {
-        return new AllSolutionIteratorSolverFactory();
+        return new FutoshikiGameSolverFactory() {
+            @Override
+            public FutoshikiGameSolver get() {
+                return new BruteForceSolver(allSolutionIteratorFactory);
+            }
+        };
     }
 
     private FutoshikiGameSolverFactory getValidRowIteratorSolverFactory() {
-        return new ValidRowIteratorSolverFactory();
+        return new FutoshikiGameSolverFactory() {
+            @Override
+            public FutoshikiGameSolver get() {
+                return new BruteForceSolver(validRowIteratorFactory);
+            }
+        };
     }
 
     private FutoshikiGameSolverFactory getLpSolverFactory() {
         return new FutoshikiGameSolverFactory() {
             @Override
-            public FutoshikiGameSolver get(FutoshikiGameProperties props) {
+            public FutoshikiGameSolver get() {
                 return lpSolver;
             }
         };
