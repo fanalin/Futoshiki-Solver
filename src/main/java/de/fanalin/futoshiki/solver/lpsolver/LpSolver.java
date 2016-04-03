@@ -1,12 +1,12 @@
 package de.fanalin.futoshiki.solver.lpsolver;
 
+import com.github.vbauer.herald.annotation.Log;
 import de.fanalin.futoshiki.solver.game.Coord;
 import de.fanalin.futoshiki.solver.game.FutoshikiGame;
 import de.fanalin.futoshiki.solver.game.FutoshikiGameSolver;
 import de.fanalin.futoshiki.solver.game.GameSolution;
 import net.sf.javailp.*;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +18,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class LpSolver implements FutoshikiGameSolver {
 
-
-    private static final Logger log = LoggerFactory.getLogger(LpSolver.class);
+    @Log
+    private Logger log;
 
     private SolverFactory solverFactory;
 
     private ConstraintAdder constraintAdder;
+
+    @Log
+    private Logger logger;
 
     @Autowired
     public LpSolver(SolverFactory solverFactory, ConstraintAdder constraintAdder) {

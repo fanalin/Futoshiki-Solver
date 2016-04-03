@@ -1,9 +1,9 @@
 package de.fanalin.futoshiki.solver.gamerepository.futoshikiorginterface;
 
+import com.github.vbauer.herald.annotation.Log;
 import de.fanalin.futoshiki.solver.game.FutoshikiGame;
 import de.fanalin.futoshiki.solver.game.FutoshikiGameProperties;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -19,7 +19,8 @@ import java.io.InputStream;
  */
 @Service
 public class XmlToGameTransformer {
-    Logger logger = LoggerFactory.getLogger(XmlToGameTransformer.class);
+    @Log
+    private Logger logger;
 
     public FutoshikiGame getGame(InputStream stream, final FutoshikiGameProperties props) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

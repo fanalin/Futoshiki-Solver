@@ -1,5 +1,6 @@
 package de.fanalin.futoshiki.solver.gamerepository.futoshikiorginterface;
 
+import com.github.vbauer.herald.annotation.Log;
 import de.fanalin.futoshiki.solver.game.FutoshikiGame;
 import de.fanalin.futoshiki.solver.game.FutoshikiGameProperties;
 import de.fanalin.futoshiki.solver.gamerepository.FutoshikiRepository;
@@ -8,7 +9,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
@@ -32,7 +32,8 @@ public class FutoshikiOrgInterface implements FutoshikiRepository {
         this.gameTransformer = gameTransformer;
     }
 
-    Logger logger = LoggerFactory.getLogger(FutoshikiOrgInterface.class);
+    @Log
+    private Logger logger;
 
     public FutoshikiGame get(FutoshikiGameProperties properties) {
         logger.info("getting game from from futoshiki.org");
