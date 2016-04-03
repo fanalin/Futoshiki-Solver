@@ -40,29 +40,14 @@ class CliArgumentParser {
     }
 
     private FutoshikiGameSolverFactory getAllSolutionBruteForceSolverFactory() {
-        return new FutoshikiGameSolverFactory() {
-            @Override
-            public FutoshikiGameSolver get() {
-                return new BruteForceSolver(allSolutionIteratorFactory);
-            }
-        };
+        return () -> new BruteForceSolver(allSolutionIteratorFactory);
     }
 
     private FutoshikiGameSolverFactory getValidRowIteratorSolverFactory() {
-        return new FutoshikiGameSolverFactory() {
-            @Override
-            public FutoshikiGameSolver get() {
-                return new BruteForceSolver(validRowIteratorFactory);
-            }
-        };
+        return () -> new BruteForceSolver(validRowIteratorFactory);
     }
 
     private FutoshikiGameSolverFactory getLpSolverFactory() {
-        return new FutoshikiGameSolverFactory() {
-            @Override
-            public FutoshikiGameSolver get() {
-                return lpSolver;
-            }
-        };
+        return () -> lpSolver;
     }
 }
