@@ -7,18 +7,19 @@ import de.fanalin.futoshiki.solver.GameSolution;
 import java.util.List;
 
 /**
- * Created by matti on 20.02.2016.
+ * Iterate over all possible solutions
  */
-public class AllSolutionIterator implements SolutionIterator {
+class AllSolutionIterator implements SolutionIterator {
 
     private final int size;
     private GameSolution currentSolution;
     private final List<Coord> coordList;
 
-    public AllSolutionIterator(final int size, GameSolution startingSolution, final List<Coord> coordList) {
+    public AllSolutionIterator(final int size, final List<Coord> coordList) {
         this.size = size;
-        this.currentSolution = startingSolution;
         this.coordList = coordList;
+
+        this.currentSolution = new GameSolution(size, 1);
     }
 
     @Override

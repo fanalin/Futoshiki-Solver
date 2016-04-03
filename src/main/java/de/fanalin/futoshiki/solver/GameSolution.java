@@ -5,11 +5,20 @@ package de.fanalin.futoshiki.solver;
  */
 public class GameSolution {
 
+    private int defaultValue = 0;
+
     private final int size;
     private Field[][] values;
 
     public GameSolution(int size) {
         this.size = size;
+        this.defaultValue = 0;
+        initValueField();
+    }
+
+    public GameSolution(int size, int defaultValue) {
+        this.size = size;
+        this.defaultValue = defaultValue;
         initValueField();
     }
 
@@ -48,7 +57,7 @@ public class GameSolution {
             values[i] = new Field[size];
             for (int j = 0; j < size; ++j) {
                 Coord coord = new Coord(i, j);
-                values[i][j] = new Field(coord, 0);
+                values[i][j] = new Field(coord, defaultValue);
             }
         }
     }

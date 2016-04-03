@@ -6,7 +6,7 @@ import de.fanalin.futoshiki.solver.GameSolution;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by matti on 03.04.2016.
+ * Factory for AllSolutionIterators
  */
 @Service
 public class AllSolutionIteratorFactory implements SolutionIteratorFactory {
@@ -14,9 +14,8 @@ public class AllSolutionIteratorFactory implements SolutionIteratorFactory {
     @Override
     public SolutionIterator get(FutoshikiGameProperties props) {
         return new AllSolutionIterator(
-                props.getSize(),
-                new GameSolution(props.getSize()),
-                Coord.getCoordList(props.getSize())
+            props.getSize(),
+            Coord.getCoordList(props.getSize())
         );
     }
 }
