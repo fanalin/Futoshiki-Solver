@@ -21,6 +21,7 @@ public class FutoshikiConstraintAdder implements ConstraintAdder {
         constraintAdders.add(new ValueOnceInColumnConstraint());
         constraintAdders.add(new ValueOnceInRowConstraint());
         constraintAdders.add(new FutoshikiInequalityConstraints());
+        constraintAdders.add(new BinaryVarConstraint());
     }
 
     @Override

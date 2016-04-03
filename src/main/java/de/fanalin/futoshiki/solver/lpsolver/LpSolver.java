@@ -38,7 +38,6 @@ public class LpSolver implements FutoshikiGameSolver {
         Problem problem = new Problem();
 
         addObjective(problem);
-        setVariableTypes(game, problem);
 
         log.info("adding constraints");
         constraintAdder.addConstraint(game, problem);
@@ -75,29 +74,6 @@ public class LpSolver implements FutoshikiGameSolver {
     private void addObjective(Problem problem) {
         Linear linear = new Linear();
         problem.setObjective(linear, OptType.MAX);
-    }
-
-    private void setVariableTypes(FutoshikiGame game, Problem problem) {
-        int size = game.getProps().getSize();
-
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
-                for (int k = 1; k <= size; ++k) {
-                    problem.setVarType(getVarName(i,j,k), Integer.class);
-
-                    Linear linearGt0 = new Linear();
-                    linearGt0.add(1, getVarName(i,j,k));
-                    problem.add(linearGt0, ">=", 0);
-
-                    Linear linearSt1 = new Linear();
-                    linearSt1.add(1, getVarName(i,j,k));
-                    problem.add(linearSt1, "<=", 1);
-
-                }
-            }
-        }
-
-        problem.setVarType("y", Integer.class);
     }
 
     public static String getVarName(int i, int j, int k) {
