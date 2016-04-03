@@ -1,8 +1,8 @@
 package de.fanalin.futoshiki.solver.Validator;
 
-import de.fanalin.futoshiki.solver.Coord;
-import de.fanalin.futoshiki.solver.FutoshikiGame;
-import de.fanalin.futoshiki.solver.GameSolution;
+import de.fanalin.futoshiki.solver.game.Coord;
+import de.fanalin.futoshiki.solver.game.FutoshikiGame;
+import de.fanalin.futoshiki.solver.game.GameSolution;
 import de.fanalin.futoshiki.solver.equation.Equation;
 import de.fanalin.futoshiki.solver.equation.SmallerThan;
 

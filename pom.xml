@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.5.RELEASE</version>
+        <version>1.3.3.RELEASE</version>
     </parent>
 
     <properties>
@@ -19,6 +19,11 @@
     </properties>
 
     <repositories>
+        <repository>
+            <id>project-repo</id>
+            <url>file://${project.basedir}/lib</url>
+        </repository>
+
         <repository>
             <!-- for glpk-java -->
             <id>XypronRelease</id>
@@ -70,15 +75,9 @@
         </dependency>
 
         <dependency>
-            <groupId>java-ilp-jar</groupId>
-            <artifactId>java-ilp-jar</artifactId>
-            <version>1.2</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/javailp-1.2a.jar</systemPath>
-            <!--
-                Download the jar from sourceforge:
-                https://sourceforge.net/projects/javailp/
-            -->
+            <groupId>net.sf.javailp</groupId>
+            <artifactId>javailp</artifactId>
+            <version>1.2a</version>
         </dependency>
         <dependency>
             <groupId>org.gnu.glpk</groupId>

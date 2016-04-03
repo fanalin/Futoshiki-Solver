@@ -1,6 +1,7 @@
 package de.fanalin.futoshiki.solver.lpsolver.constraints;
 
-import de.fanalin.futoshiki.solver.FutoshikiGame;
+import de.fanalin.futoshiki.solver.game.Coord;
+import de.fanalin.futoshiki.solver.game.FutoshikiGame;
 import de.fanalin.futoshiki.solver.lpsolver.ConstraintAdder;
 import net.sf.javailp.Linear;
 import net.sf.javailp.Problem;
@@ -16,19 +17,17 @@ class OneValueOnFieldConstraint implements ConstraintAdder {
     public void addConstraint(FutoshikiGame game, Problem problem) {
         int size = game.getProps().getSize();
 
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
-                addConstraintForField(game, problem, i, j);
-            }
+        for (Coord coord : Coord.getCoordList(size)) {
+            addConstraintForField(game, problem, coord);
         }
     }
 
-    private void addConstraintForField(FutoshikiGame game, Problem problem, int i, int j) {
+    private void addConstraintForField(FutoshikiGame game, Problem problem, Coord coord) {
         Linear linear = new Linear();
 
         int size = game.getProps().getSize();
         for (int k = 1; k <= size; ++k) {
-            linear.add(1, getVarName(i, j, k));
+            linear.add(1, getVarName(coord.getX(), coord.getY(), k));
         }
 
         problem.add(linear, "=", 1);

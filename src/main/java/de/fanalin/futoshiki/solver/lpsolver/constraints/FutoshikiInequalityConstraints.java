@@ -1,7 +1,7 @@
 package de.fanalin.futoshiki.solver.lpsolver.constraints;
 
-import de.fanalin.futoshiki.solver.Coord;
-import de.fanalin.futoshiki.solver.FutoshikiGame;
+import de.fanalin.futoshiki.solver.game.Coord;
+import de.fanalin.futoshiki.solver.game.FutoshikiGame;
 import de.fanalin.futoshiki.solver.lpsolver.ConstraintAdder;
 import de.fanalin.futoshiki.solver.lpsolver.LpSolver;
 import net.sf.javailp.Linear;

@@ -1,8 +1,8 @@
 package de.fanalin.futoshiki.solver.gamerepository.futoshikiorginterface;
 
-import de.fanalin.futoshiki.solver.Coord;
-import de.fanalin.futoshiki.solver.FutoshikiGame;
-import de.fanalin.futoshiki.solver.FutoshikiGameProperties;
+import de.fanalin.futoshiki.solver.game.Coord;
+import de.fanalin.futoshiki.solver.game.FutoshikiGame;
+import de.fanalin.futoshiki.solver.game.FutoshikiGameProperties;
 
 /**
  * Uses the string representation from futoshiki.org as the datastore of a Futoshiki game

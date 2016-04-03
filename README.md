@@ -10,5 +10,8 @@ the files in your PATH variable.
 
 To use GLPK, the solver uses JAVA ILP, a facade for different MIP libraries.
 This library is not available via maven.
-Download the jar file from the project page at sourceforge (https://sourceforge.net/projects/javailp/)
- and put it into the ${project.basedir}/lib directory of this project.
+
+Download the jar file from the project page at sourceforge (https://sourceforge.net/projects/javailp/).
+Then add it to a local maven repository with the following command:
+
+ mvn install:install-file -Dfile=path/to/the/downloaded/jar -DgroupId=net.sf.javailp -DartifactId=javailp -Dversion=1.2a -Dpackaging=jar -DlocalRepositoryPath=lib

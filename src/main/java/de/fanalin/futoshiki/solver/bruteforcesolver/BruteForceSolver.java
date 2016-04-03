@@ -1,7 +1,9 @@
 package de.fanalin.futoshiki.solver.bruteforcesolver;
 
-import de.fanalin.futoshiki.solver.*;
 import de.fanalin.futoshiki.solver.Validator.SolutionValidator;
+import de.fanalin.futoshiki.solver.game.FutoshikiGame;
+import de.fanalin.futoshiki.solver.game.FutoshikiGameSolver;
+import de.fanalin.futoshiki.solver.game.GameSolution;
 
 /**
  * Created by matti on 13.02.2016.

@@ -1,4 +1,7 @@
-package de.fanalin.futoshiki.solver;
+package de.fanalin.futoshiki.solver.game;
+
+import de.fanalin.futoshiki.solver.game.Coord;
+import de.fanalin.futoshiki.solver.game.Field;
 
 /**
  * A GameSolution describes a (not necessarily valid) solution of a Futoshiki game

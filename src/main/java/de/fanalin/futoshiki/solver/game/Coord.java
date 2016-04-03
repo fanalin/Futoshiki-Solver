@@ -1,4 +1,4 @@
-package de.fanalin.futoshiki.solver;
+package de.fanalin.futoshiki.solver.game;
 
 import java.util.ArrayList;
 import java.util.List;

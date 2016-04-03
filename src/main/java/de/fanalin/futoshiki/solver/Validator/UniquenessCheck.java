@@ -1,6 +1,6 @@
 package de.fanalin.futoshiki.solver.Validator;
 
-import de.fanalin.futoshiki.solver.GameSolution;
+import de.fanalin.futoshiki.solver.game.GameSolution;
 
 
 /**

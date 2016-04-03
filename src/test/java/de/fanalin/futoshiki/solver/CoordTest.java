@@ -1,9 +1,9 @@
 package de.fanalin.futoshiki.solver;
 
+import de.fanalin.futoshiki.solver.game.Coord;
 import junit.framework.TestCase;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 
 /**

@@ -1,6 +1,6 @@
 package de.fanalin.futoshiki.solver.lpsolver;
 
-import de.fanalin.futoshiki.solver.FutoshikiGame;
+import de.fanalin.futoshiki.solver.game.FutoshikiGame;
 import net.sf.javailp.Problem;
 
 /**

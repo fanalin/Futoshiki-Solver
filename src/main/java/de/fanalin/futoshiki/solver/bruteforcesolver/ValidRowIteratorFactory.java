@@ -1,6 +1,6 @@
 package de.fanalin.futoshiki.solver.bruteforcesolver;
 
-import de.fanalin.futoshiki.solver.FutoshikiGameProperties;
+import de.fanalin.futoshiki.solver.game.FutoshikiGameProperties;
 import org.springframework.stereotype.Service;
 
 /**

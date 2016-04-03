@@ -1,9 +1,9 @@
 package de.fanalin.futoshiki.solver.lpsolver;
 
-import de.fanalin.futoshiki.solver.Coord;
-import de.fanalin.futoshiki.solver.FutoshikiGame;
-import de.fanalin.futoshiki.solver.FutoshikiGameSolver;
-import de.fanalin.futoshiki.solver.GameSolution;
+import de.fanalin.futoshiki.solver.game.Coord;
+import de.fanalin.futoshiki.solver.game.FutoshikiGame;
+import de.fanalin.futoshiki.solver.game.FutoshikiGameSolver;
+import de.fanalin.futoshiki.solver.game.GameSolution;
 import net.sf.javailp.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +48,11 @@ public class LpSolver implements FutoshikiGameSolver {
 
         Result result = solver.solve(problem);
         log.info("finished solving problem");
+
+        if (result == null) {
+            log.error("LP-Solver did not found a result!");
+            return null;
+        }
 
         return createSolutionFromLpResult(game, result);
     }

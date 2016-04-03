@@ -1,4 +1,4 @@
-package de.fanalin.futoshiki.solver;
+package de.fanalin.futoshiki.solver.game;
 
 /**
  * Created by matti on 26.09.2015.

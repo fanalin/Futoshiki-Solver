@@ -1,8 +1,8 @@
 package de.fanalin.futoshiki.solver.bruteforcesolver;
 
-import de.fanalin.futoshiki.solver.Coord;
-import de.fanalin.futoshiki.solver.Field;
-import de.fanalin.futoshiki.solver.GameSolution;
+import de.fanalin.futoshiki.solver.game.Coord;
+import de.fanalin.futoshiki.solver.game.Field;
+import de.fanalin.futoshiki.solver.game.GameSolution;
 
 import java.util.List;
 
@@ -15,10 +15,10 @@ class AllSolutionIterator implements SolutionIterator {
     private GameSolution currentSolution;
     private final List<Coord> coordList;
 
-    public AllSolutionIterator(final int size, final List<Coord> coordList) {
+    public AllSolutionIterator(final int size) {
         this.size = size;
-        this.coordList = coordList;
 
+        this.coordList = Coord.getCoordList(size);
         this.currentSolution = new GameSolution(size, 1);
     }
 

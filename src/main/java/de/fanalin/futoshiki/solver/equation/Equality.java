@@ -1,7 +1,7 @@
 package de.fanalin.futoshiki.solver.equation;
 
-import de.fanalin.futoshiki.solver.Coord;
-import de.fanalin.futoshiki.solver.GameSolution;
+import de.fanalin.futoshiki.solver.game.Coord;
+import de.fanalin.futoshiki.solver.game.GameSolution;
 
 /**
  * Created by matti on 26.09.2015.

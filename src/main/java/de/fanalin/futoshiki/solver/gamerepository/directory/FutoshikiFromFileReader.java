@@ -1,7 +1,7 @@
 package de.fanalin.futoshiki.solver.gamerepository.directory;
 
-import de.fanalin.futoshiki.solver.FutoshikiGame;
-import de.fanalin.futoshiki.solver.FutoshikiGameProperties;
+import de.fanalin.futoshiki.solver.game.FutoshikiGame;
+import de.fanalin.futoshiki.solver.game.FutoshikiGameProperties;
 import de.fanalin.futoshiki.solver.gamerepository.FutoshikiRepository;
 
 import de.fanalin.futoshiki.solver.gamerepository.futoshikiorginterface.XmlToGameTransformer;
@@ -14,11 +14,13 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * Read futoshiki games from a directory games/ from classpath. Every file is one game, the game properties are specified
+ * in the filename.
+ *
  * The files use the same format as the games from the futoshiki.org interface
  *
- * Created by matti on 19.09.2015.
+ * Currently not in use, stays here for testing purposes
  */
-@Service(value = "futoshikiFromFileReader")
 public class FutoshikiFromFileReader implements FutoshikiRepository {
 
     private XmlToGameTransformer gameTransformer;
@@ -26,7 +28,6 @@ public class FutoshikiFromFileReader implements FutoshikiRepository {
     final static String FILE_PREFIX = "games/futoshiki-";
     final static String FILE_SUFFIX = ".xml";
 
-    @Autowired
     public FutoshikiFromFileReader(XmlToGameTransformer gameTransformer) {
         this.gameTransformer = gameTransformer;
     }

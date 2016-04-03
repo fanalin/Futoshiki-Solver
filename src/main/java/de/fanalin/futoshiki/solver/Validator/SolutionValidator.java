@@ -1,7 +1,7 @@
 package de.fanalin.futoshiki.solver.Validator;
 
-import de.fanalin.futoshiki.solver.FutoshikiGame;
-import de.fanalin.futoshiki.solver.GameSolution;
+import de.fanalin.futoshiki.solver.game.FutoshikiGame;
+import de.fanalin.futoshiki.solver.game.GameSolution;
 
 import java.util.ArrayList;
 import java.util.List;

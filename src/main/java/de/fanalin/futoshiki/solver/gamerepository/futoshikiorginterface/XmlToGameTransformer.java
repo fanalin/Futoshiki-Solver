@@ -1,7 +1,7 @@
 package de.fanalin.futoshiki.solver.gamerepository.futoshikiorginterface;
 
-import de.fanalin.futoshiki.solver.FutoshikiGame;
-import de.fanalin.futoshiki.solver.FutoshikiGameProperties;
+import de.fanalin.futoshiki.solver.game.FutoshikiGame;
+import de.fanalin.futoshiki.solver.game.FutoshikiGameProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

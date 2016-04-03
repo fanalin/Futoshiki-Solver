@@ -1,7 +1,7 @@
 package de.fanalin.futoshiki.solver.bruteforcesolver;
 
-import de.fanalin.futoshiki.solver.Coord;
-import de.fanalin.futoshiki.solver.GameSolution;
+import de.fanalin.futoshiki.solver.game.Coord;
+import de.fanalin.futoshiki.solver.game.GameSolution;
 
 import java.util.ArrayList;
 import java.util.Iterator;

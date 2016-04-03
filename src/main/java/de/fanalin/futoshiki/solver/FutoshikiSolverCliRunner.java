@@ -1,6 +1,11 @@
 package de.fanalin.futoshiki.solver;
 
 import de.fanalin.futoshiki.solver.Validator.SolutionValidator;
+import de.fanalin.futoshiki.solver.cli.CliArguments;
+import de.fanalin.futoshiki.solver.game.FutoshikiGame;
+import de.fanalin.futoshiki.solver.game.FutoshikiGameProperties;
+import de.fanalin.futoshiki.solver.game.FutoshikiGameSolver;
+import de.fanalin.futoshiki.solver.game.GameSolution;
 import de.fanalin.futoshiki.solver.gamerepository.FutoshikiRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,33 +18,47 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FutoshikiSolverCliRunner implements CommandLineRunner {
 
     @Autowired
-    private CliArgumentParser cliArgumentParser;
+    private CliArguments args;
 
+    @Autowired
+    private FutoshikiRepository gameRepo;
 
     private Logger log = LoggerFactory.getLogger(FutoshikiSolverCliRunner.class);
-
 
     public static void main(String args[]) {
         SpringApplication.run(FutoshikiSolverCliRunner.class);
     }
 
     @Override
-    public void run(String... strings) throws Exception {
+    public void run(String[] strings) throws Exception {
         log.info("Starting Futoshiki Solver");
-        FutoshikiGameProperties props = cliArgumentParser.getGameProperties(strings);
 
-        FutoshikiRepository repo = cliArgumentParser.getFutoshikoGameRepository(strings);
-        FutoshikiGame game = repo.get(props);
+        if (args.showHelp()) {
+            System.out.println(args.helpText());
+            return;
+        }
 
+        log.info("parsing CLI arguments");
+
+        FutoshikiGameProperties props = args.getGameProperties();
+
+        log.info("requesting game from repository");
+        FutoshikiGame game = gameRepo.get(props);
         if (game == null) {
             log.info("No game found!");
             return;
         }
 
-        FutoshikiGameSolverFactory solverFactory = cliArgumentParser.getSolverFromCliArguments(strings);
-        FutoshikiGameSolver solver = solverFactory.get();
-
+        log.info("solving game");
+        FutoshikiGameSolver solver = args.getSolver();
         GameSolution solution = solver.solve(game);
+
+        log.info("game solved");
+        if (solution == null) {
+            log.error("No solution found!");
+            return;
+        }
+
         solution.print();
 
         SolutionValidator validator = new SolutionValidator(game);

@@ -1,10 +1,9 @@
 package de.fanalin.futoshiki.solver.gamerepository.futoshikiorginterface;
 
-import de.fanalin.futoshiki.solver.FutoshikiGame;
-import de.fanalin.futoshiki.solver.FutoshikiGameProperties;
+import de.fanalin.futoshiki.solver.game.FutoshikiGame;
+import de.fanalin.futoshiki.solver.game.FutoshikiGameProperties;
 import de.fanalin.futoshiki.solver.gamerepository.FutoshikiRepository;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
@@ -38,11 +37,11 @@ public class FutoshikiOrgInterface implements FutoshikiRepository {
     public FutoshikiGame get(FutoshikiGameProperties properties) {
         logger.info("getting game from from futoshiki.org");
 
-        HttpGet request = new HttpGet("http://www.futoshiki.org/get.cgi?size=4&difficulty=2&id=6584");
+        HttpGet request = new HttpGet(getUrl(properties));
 
         ResponseHandler<FutoshikiGame> responseHandler = new ResponseHandler<FutoshikiGame>() {
             @Override
-            public FutoshikiGame handleResponse(HttpResponse httpResponse) throws ClientProtocolException, IOException {
+            public FutoshikiGame handleResponse(HttpResponse httpResponse) throws IOException {
                 try {
                     return gameTransformer.getGame(httpResponse.getEntity().getContent(), properties);
                 } catch (ParserConfigurationException e) {
@@ -61,5 +60,14 @@ public class FutoshikiOrgInterface implements FutoshikiRepository {
         }
 
         return null;
+    }
+
+    private String getUrl(FutoshikiGameProperties props) {
+        int randomInt = new Double(Math.random()*1000).intValue();
+        StringBuilder sb = new StringBuilder("http://www.futoshiki.org/get.cgi?")
+            .append("size=").append(props.getSize())
+            .append("&difficulty=").append(props.getDifficulty())
+            .append("&id=").append(randomInt);
+        return sb.toString();
     }
 }
