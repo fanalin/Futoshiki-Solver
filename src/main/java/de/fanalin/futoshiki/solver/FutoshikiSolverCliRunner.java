@@ -9,19 +9,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.annotation.Resource;
-
-
 @SpringBootApplication
 public class FutoshikiSolverCliRunner implements CommandLineRunner {
 
-    @Resource(name = "futoshikiFromFileReader")
-    private FutoshikiRepository repo;
-
     @Autowired
-    private FutoshikiGameSolver solver;
+    private CliArgumentParser cliArgumentParser;
 
-    private static final Logger log = LoggerFactory.getLogger(FutoshikiSolverCliRunner.class);
+
+    private Logger log = LoggerFactory.getLogger(FutoshikiSolverCliRunner.class);
+
 
     public static void main(String args[]) {
         SpringApplication.run(FutoshikiSolverCliRunner.class);
@@ -30,28 +26,18 @@ public class FutoshikiSolverCliRunner implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         log.info("Starting Futoshiki Solver");
-        FutoshikiGameProperties props = new FutoshikiGameProperties(1, 5);
+        FutoshikiGameProperties props = cliArgumentParser.getGameProperties(strings);
+
+        FutoshikiRepository repo = cliArgumentParser.getFutoshikoGameRepository(strings);
         FutoshikiGame game = repo.get(props);
 
-        /*FutoshikiGameSolver solver = new BruteForceSolver(
-            new AllSolutionIterator(
-                props.getSize(),
-                new GameSolution(props.getSize()),
-                Coord.getCoordList(props.getSize())
-            )
-        );*/
+        if (game == null) {
+            log.info("No game found!");
+            return;
+        }
 
-        /*
-        RowPermutationIteratorFactory factory = new RowPermutationIteratorFactory(
-            RowPermutationIteratorFactory.createValidNumbersList(props.getSize())
-        );
-        FutoshikiGameSolver solver = new BruteForceSolver(
-            new ValidRowIterator(
-                props.getSize(),
-                ValidRowIterator.getIteratorList(factory, props.getSize()),
-                factory
-            )
-        );*/
+        FutoshikiGameSolverFactory solverFactory = cliArgumentParser.getSolverFromCliArguments(strings);
+        FutoshikiGameSolver solver = solverFactory.get(props);
 
         GameSolution solution = solver.solve(game);
         solution.print();
@@ -60,3 +46,4 @@ public class FutoshikiSolverCliRunner implements CommandLineRunner {
         log.info("checking if solution is valid: " + validator.isValid(solution));
     }
 }
+

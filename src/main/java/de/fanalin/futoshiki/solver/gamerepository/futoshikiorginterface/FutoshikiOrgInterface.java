@@ -18,9 +18,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 /**
- * Created by matti on 15.09.2015.
+ * Repository for Futoshiki games, which uses futoshiki.org to fetch games from
  */
-@Service
+@Service(value = "futoshikiOrgRepository")
 public class FutoshikiOrgInterface implements FutoshikiRepository {
 
     private HttpClient httpClient;

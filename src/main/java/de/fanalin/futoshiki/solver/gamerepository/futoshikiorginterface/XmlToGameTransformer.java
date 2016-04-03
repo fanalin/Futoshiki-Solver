@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by matti on 19.09.2015.
+ * Extracts the game string from the "XML" as returned by the futoshiki.org services
  */
 @Service
 public class XmlToGameTransformer {

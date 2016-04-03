@@ -5,7 +5,7 @@ import de.fanalin.futoshiki.solver.FutoshikiGame;
 import de.fanalin.futoshiki.solver.FutoshikiGameProperties;
 
 /**
- * Created by matti on 15.09.2015.
+ * Uses the string representation from futoshiki.org as the datastore of a Futoshiki game
  */
 public class StringFutoshikiGame implements FutoshikiGame {
 

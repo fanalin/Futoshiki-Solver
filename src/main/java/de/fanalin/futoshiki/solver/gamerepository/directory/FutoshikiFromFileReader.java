@@ -10,9 +10,8 @@ import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * The files use the same format as the games from the futoshiki.org interface
@@ -24,6 +23,9 @@ public class FutoshikiFromFileReader implements FutoshikiRepository {
 
     private XmlToGameTransformer gameTransformer;
 
+    final static String FILE_PREFIX = "games/futoshiki-";
+    final static String FILE_SUFFIX = ".xml";
+
     @Autowired
     public FutoshikiFromFileReader(XmlToGameTransformer gameTransformer) {
         this.gameTransformer = gameTransformer;
@@ -31,14 +33,11 @@ public class FutoshikiFromFileReader implements FutoshikiRepository {
 
     @Override
     public FutoshikiGame get(FutoshikiGameProperties properties) {
-        final String baseName = "c:/Users/matti/Documents/projects/Futoshiki-Solver/games/futoshiki-";
+
+        String fileName = FILE_PREFIX + properties.getSize() + "-" + properties.getDifficulty() + FILE_SUFFIX;
+        InputStream gameStream = getClass().getClassLoader().getResourceAsStream(fileName);
         try {
-            return gameTransformer.getGame(
-                new FileInputStream(
-                    new File(baseName + properties.getSize() + "-" + properties.getDifficulty() + ".xml")
-                ),
-                properties
-            );
+            return gameTransformer.getGame(gameStream, properties);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -20,19 +20,21 @@
 
     <repositories>
         <repository>
+            <!-- for glpk-java -->
             <id>XypronRelease</id>
             <name>Xypron Release</name>
             <url>https://www.xypron.de/repository</url>
             <layout>default</layout>
         </repository>
+
+        <repository>
+            <!-- for herald -->
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <dependencies>
-        <dependency>
-            <groupId>org.gnu.glpk</groupId>
-            <artifactId>glpk-java</artifactId>
-            <version>1.5.0</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -55,6 +57,13 @@
         </dependency>
 
         <dependency>
+            <groupId>com.github.vbauer</groupId>
+            <artifactId>herald</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
+        <!-- for brute solving algorithms -->
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
             <version>4.1</version>
@@ -66,6 +75,15 @@
             <version>1.2</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/javailp-1.2a.jar</systemPath>
+            <!--
+                Download the jar from sourceforge:
+                https://sourceforge.net/projects/javailp/
+            -->
+        </dependency>
+        <dependency>
+            <groupId>org.gnu.glpk</groupId>
+            <artifactId>glpk-java</artifactId>
+            <version>1.5.0</version>
         </dependency>
 
     </dependencies>
